@@ -19,7 +19,7 @@ public class BusMessageWriter : IAsyncDisposable
         
         _buffer.Write(nextMessage, 0, nextMessage.Length);
 
-        if (_buffer.Length > 100)
+        if (_buffer.Length > 1000)
         {
             await _connection.PublishAsync(_buffer.ToArray());
             _buffer.SetLength(0);
