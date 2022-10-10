@@ -1,6 +1,11 @@
 namespace Multithreading.Utils;
 
-public sealed class BusMessageWriter : IAsyncDisposable
+public interface IBusMessageWriter : IAsyncDisposable
+{
+    Task SendMessageAsync(byte[] nextMessage);
+}
+
+public sealed class BusMessageWriter : IBusMessageWriter
 {
     private readonly IBusConnection _connection;
     
