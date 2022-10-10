@@ -1,6 +1,6 @@
 namespace Multithreading.Utils;
 
-public class BusMessageWriter : IAsyncDisposable
+public sealed class BusMessageWriter : IAsyncDisposable
 {
     private readonly IBusConnection _connection;
     
@@ -36,6 +36,8 @@ public class BusMessageWriter : IAsyncDisposable
         }
         
         await _buffer.DisposeAsync();
+        _pool.Dispose();
+        
         GC.SuppressFinalize(this);
     }
 }
